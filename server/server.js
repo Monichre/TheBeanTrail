@@ -53,13 +53,18 @@ router.route('/users/:users_id')
 //   })
 //   // update the coffee shop with this Id
   .put(function(request, response){
+    console.log(response);
     User.findById(request.params.users_id, function(error, user){
+      console.log(user);
       if(error) response.send(error);
       //update
+
       user.accounts = request.body.accounts;
-      user.coffeeShop = request.body.coffee_shops;
+      user.coffeeShops = request.body.coffee_shops;
       user.lastCoffeeId = request.body.last_coffee_id;
+
       //save the udpate
+      console.log(user);
       user.save(function(error){
         if(error) response.send(error);
         response.json({message:'updated!'});
@@ -87,7 +92,7 @@ router.route('/users')
     console.log(user);
     console.log(request.body);
     user.accounts = request.body.accounts;
-    user.coffeeShop = request.body.coffee_shops;
+    user.coffeeShops = request.body.coffee_shops;
     user.lastCoffeeId = request.body.last_coffee_id;
 
     user.save(function(error){

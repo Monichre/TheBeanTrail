@@ -20,7 +20,8 @@ export default Ember.Route.extend({
      var savedUser = this.store.createRecord('user', newUser);
      savedUser.save();
    },
-   updateUser(user){
+   updateUser(user, id){
+    //  debugger;
      user.save();
    }
   }

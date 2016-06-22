@@ -1,5 +1,5 @@
-import ApplicationSerializer from './application';
+import RESTSerializer from './application';
 
-export default ApplicationSerializer.extend({
+export default RESTSerializer.extend({
   primaryKey: '_id'
 });

@@ -31,7 +31,8 @@ export default Ember.Component.extend({
                   }
                 });
                 user.set('coffeeShops', coffeeShops);
-                self.sendAction('updateUser', user);
+                self.sendAction('updateUser', user, user.id);
+                console.log(user);
               }
             });
           }
@@ -44,21 +45,28 @@ export default Ember.Component.extend({
           console.log("New user: " + newUser);
           var newUserCoffee = [];
           data.forEach(function(transaction){
+            // this if block populates the user account model property
             if(!(newUser.accounts.includes(transaction.account))){
               newUser.accounts.push(transaction.account);
             }
+            // this if block populates the user coffeeShops model property
             if(transaction.category.includes("Coffee Shop")){
               if(!(newUserCoffee.includes(transaction))){
                 newUserCoffee.push(transaction);
               }
             }
           });
+          //This if block popoulates the lastCoffeeId model property
           newUser.lastCoffeeId = newUserCoffee[newUserCoffee.length - 4]._id;
-          var newUserShops = newUserCoffee.splice((newUserCoffee.length-1), -3);
+          console.log(newUserCoffee);
+          var newUserShops = newUserCoffee.splice(-3, 3);
+          console.log("Right before we send it up: " + newUser);
+          newUser.coffeeShops = newUserCoffee;
+          console.log(newUserShops);
           self.set('coffeeShops', newUserShops);
           self.sendAction('newUser', newUser);
         }
-        
+
         console.log("Coffee Shops: " + self.coffeeShops);
       });
     }

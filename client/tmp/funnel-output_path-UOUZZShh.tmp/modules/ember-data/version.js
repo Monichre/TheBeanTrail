@@ -1,0 +1,1 @@
+/Users/Liam/Desktop/coffee_card3/client/tmp/creator-output_path-9r6GCHfq.tmp/version.js

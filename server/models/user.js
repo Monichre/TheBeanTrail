@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 
 var UserSchema = new Schema({
   accounts: [String],
-  coffeeShops: [String],
+  coffeeShops: [Schema.Types.Mixed],
   lastCoffeeId: String,
 });
 
